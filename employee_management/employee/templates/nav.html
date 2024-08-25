@@ -1,0 +1,9 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}" />
+<header>
+  <nav>
+    <a href="{% url "project" %}">Project</a>
+    <a href="{% url "employee" %}">Employee</a>
+    <a href="{% url "position" %}">Position</a>
+  </nav>
+</header>

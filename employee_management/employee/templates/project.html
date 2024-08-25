@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% load static %}
+{% csrf_token %}
+{% block title %} Project {% endblock %}
+{% block head %}
+<div class="head">
+    <h1>Project</h1>
+</div>
+{% endblock %}
+{% block content %}
+{% if project %}
+{% for p in project %}
+<div class="itemGroup">
+    <div class="item">
+        <div>{{ p.id }} {{ p.name }}</div>
+            <div>{{ p.start }} - {{ p.due }}</div>
+                <div class="action">
+                    <a href="{% url "edit" p.id %}" class="edit btn">แก้ไข</a>
+                    <button type="submit" onclick="deleteProject({{ p.id }}, '{{ csrf_token }}')" class="delete">ลบ</button>
+                </div>
+            </div>
+        </div>
+{% endfor %}
+{% endif %}
+{% endblock %}
+{% block script %}
+<script src="{% static 'project.js' %}"></script>
+{% endblock%}

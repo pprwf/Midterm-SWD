@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <title>{% block title %} Template Layout {% endblock %}</title>
+</head>
+<body>
+    <div id="navbar">
+        {% include "nav.html" %}
+    </div>
+    <div id="head">
+        {% block head %} {% endblock %}
+    </div>
+    <div id="content">
+        {% block content %} {% endblock %}
+    </div>
+    <div id="script">
+        {% block script %} {% endblock %}
+    </div>
+</body>
+</html>

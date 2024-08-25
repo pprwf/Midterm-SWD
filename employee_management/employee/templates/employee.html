@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+{% load humanize %}
+{% block title %} Employee {% endblock %}
+{% if employee %}
+{% block head %}
+<div class="head">
+    <h1>Employee</h1>
+    <div class>
+        <h1>Total {{ count }} People</h1>
+    </div>
+</div>
+{% endblock %}
+{% block content %}
+<table>
+    <thead>
+        <tr>
+            <th>No.</th>
+            <th>Employee ID</th>
+            <th>Full Name</th>
+            <th>Genger</th>
+            <th>Birth Date</th>
+            <th>Hire Date</th>
+            <th>Salary</th>
+            <th>Department</th>
+            <th>Position</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for emp in employee %}
+        <tr {% if forloop.first or forloop.last %}style="color: red;"{% endif %}>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ emp.id }}</td> 
+            <td>{{ emp.fullname }}</td>
+            <td>{% if emp.gender == "M" %} Male {% elif emp.gender == "F" %} Female {% else %} Other {% endif %}</td>
+            <td>{{ emp.birth | date:"d/m/Y" }}</td>
+            <td>{{ emp.hire | date:"d/m/Y" }}</td>
+            <td>{{ emp.salary | intcomma }}</td>
+            <td>{{ emp.position.department.name }}</td>
+            <td>{{ emp.position.name }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+{% endif %}
